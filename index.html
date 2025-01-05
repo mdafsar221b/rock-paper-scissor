@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title> Rock Paoer Scissor </title>
+  <title> Rock Paoer Scissor </title> 
   <link rel="stylesheet" href="styles/10-rock-paper-scissor.css">
   <style>
    
@@ -17,18 +17,12 @@
   <p class="Name"> by-Afsar Sayyed</p>
   
  <div>
-  <button onclick=" 
-  playGame('Rock');
-     " class="move-btn"><img class="move-icon" src="images/Rock-emoji.png"> </button>
+  <button class="move-btn js-Rock-btn"><img class="move-icon" src="images/Rock-emoji.png"> </button>
 
-  <button onclick=" 
-   playGame('Paper');
-     " class="move-btn"><img class="move-icon" src="images/Paper-emoji.png"></button>
+  <button class="move-btn js-Paper-btn"><img class="move-icon" src="images/Paper-emoji.png"></button>
 
 
-  <button onclick=" 
-    playGame('Scissor'); 
-      " class="move-btn"><img class="move-icon" src="images/Scissor-emoji.png"></button>
+  <button class="move-btn js-Scissor-btn"><img class="move-icon" src="images/Scissor-emoji.png"></button>
  </div>
 
 
@@ -39,19 +33,24 @@
   <p class="js-score score"> </p>
 
   <button onclick="
-    score.wins=0;
-    score.lose=0;
-    score.Tie=0;
-    localStorage.removeItem('score');
-
-    updateScore();
-    
-    " class="reset-btn"> Reset Score</button>
-    <button class="auto-play-btn" onclick="
+    openResetPopup();
+    " class="reset-btn simple-button"> Reset Score</button>
+    <button class="auto-play-btn simple-button" onclick="
      autoPlay();
     
     ">Auto PLay</button>
+    <!-- Reset Confirmation Pop-up -->
+<div class="popup-container" id="resetPopup">
+    <div class="popup-content">
+        <p>Are you sure you want to reset the score?</p>
+        <button class="simple-button" onclick="resetScore();
+        closeResetPopup();
+        ">Yes, Reset</button>
+        <button class="simple-button" onclick="closeResetPopup()">Cancel</button>
+    </div>
+</div>
 
+   
 </div>
 
 
