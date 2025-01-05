@@ -20,22 +20,59 @@
    */
 let isAutoplaying = false ;
   let intervalId;
+  const autoPlayElement=document.querySelector('.auto-play-btn');
   function autoPlay(){
         if(!isAutoplaying){
-        intervalId=setInterval(function(){
+        intervalId=setInterval(()=>{
           const playerMove= pickComputerMove();
         playGame(playerMove);
     
         },1000);
         isAutoplaying=true;
+        
+        autoPlayElement.style.padding='0 2px';
+        autoPlayElement.innerText='Stop Auto play';
+    
+       
       }
     else{
 
       clearInterval(intervalId);
       isAutoplaying=false;
+      document.querySelector('.auto-play-btn').innerText='Auto Play';
     }
   }
 
+function resetScore(){
+    score.wins=0;
+    score.lose=0;
+    score.Tie=0;
+    localStorage.removeItem('score');
+  
+    updateScore();
+     
+  
+   }
+
+document.body.addEventListener('keydown',(event)=>{console.log(event.key);
+if(event.key==='r') playGame('Rock');
+else if(event.key==='p') playGame('Paper');
+else if (event.key==='s') playGame('Scissor');
+else if (event.key==='a') autoPlay();
+else if (event.key==='Backspace')resetScor();
+
+})  
+  
+  // another version of "onClick" 
+  document.querySelector('.js-Rock-btn').addEventListener('click',()=>{
+    playGame('Rock');
+  });
+  document.querySelector('.js-Paper-btn').addEventListener('click', ()=>{
+    playGame('Paper');
+  });
+  document.querySelector('.js-Scissor-btn').addEventListener('click', ()=>{
+    playGame('Scissor');
+  });
 
 
  function playGame(playerMove) {
@@ -123,4 +160,19 @@ let isAutoplaying = false ;
    return computerMove;
  }
 
+// Function to open the reset confirmation pop-up
+function openResetPopup() {
+  document.querySelector('.popup-container').style.display = 'flex';
+}
+
+// Function to close the reset confirmation pop-up
+function closeResetPopup() {
+  document.getElementById('resetPopup').style.display = 'none';
+}
+
+// Function to confirm reset and reset the score
+function confirmReset() {
+  resetScore(); // Call your existing resetScore function
+  closeResetPopup(); // Close the pop-up after resetting
+}
 
