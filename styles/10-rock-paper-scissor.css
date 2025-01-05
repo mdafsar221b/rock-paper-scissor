@@ -49,6 +49,9 @@ body{
    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
 
  }
+ .move-btn:hover{
+  background-color: #000;
+ }
  .result{
   font-size: 25px;
   font-weight: bold;
