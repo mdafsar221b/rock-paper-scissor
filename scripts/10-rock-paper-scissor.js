@@ -162,7 +162,7 @@ else if (event.key==='Backspace')resetScor();
 
 // Function to open the reset confirmation pop-up
 function openResetPopup() {
-  document.querySelector('.popup-container').style.display = 'flex';
+  document.getElementById('resetPopup').style.display = 'flex';
 }
 
 // Function to close the reset confirmation pop-up
